@@ -7,9 +7,5 @@ chat_id = 46951859 # Ваш chat ID, не меняйте название пер
 
 def solution(x,y) -> bool: # Одна или две выборке на входе, заполняется исходя из условия
     alpha = 0.01
-    #_,pv = stats.ttest_ind(x, y, equal_var=False)
-    pv = mannwhitneyu(x, y, alternative='greater', method='asymptotic')
-    if pv.pvalue <= alpha:
-        return True
-    else:
-        return False
+    _,pv = stats.ttest_ind(x, y, equal_var=False)
+    return pv < alpha
